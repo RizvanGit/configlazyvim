@@ -31,3 +31,11 @@ keymap.set("n", "sv", ":vsplit<Return>", opts)
 --keymap.set("n", "sk", "<C-w>k")
 --keymap.set("n", "sj", "<C-w>j")
 --keymap.set("n", "sl", "<C-w>l")
+
+-- Append bottom line not moving cursor
+keymap.set("n", "J", "mzJ`z")
+
+--copy/delete to system buffer
+keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+keymap.set("n", "<leader>Y", [["+Y]])
+keymap.set({ "n", "v" }, "<leader>d", [["_d]])
