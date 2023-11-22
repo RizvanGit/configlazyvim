@@ -4,6 +4,8 @@
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
 
 -- Increment/Decrement
 keymap.set("n", "+", "<C-a>")
@@ -36,6 +38,23 @@ keymap.set("n", "sv", ":vsplit<Return>", opts)
 keymap.set("n", "J", "mzJ`z")
 
 --copy/delete to system buffer
-keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-keymap.set("n", "<leader>Y", [["+Y]])
-keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to Global" })
+keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to Global2" })
+keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to Global" })
+
+--harpoon
+keymap.set("n", "<leader>a", mark.add_file, { desc = "Add to Harpoon" })
+keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+
+keymap.set("n", "<C-t>", function()
+  ui.nav_file(1)
+end)
+keymap.set("n", "<C-i>", function()
+  ui.nav_file(2)
+end)
+keymap.set("n", "<C-n>", function()
+  ui.nav_file(3)
+end)
+keymap.set("n", "<C-s>", function()
+  ui.nav_file(4)
+end)
